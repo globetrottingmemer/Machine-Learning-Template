@@ -1,0 +1,15 @@
+import pandas as pd
+from sklearn.model_selection import GridSearchCV
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import Pipeline
+import matplotlib.pyplot as plt
+from sklearn.neighbors import KNeighborsRegressor as KNN
+X,y = dataset
+
+pipe = Pipeline([ ("scale", StandardScaler()), ("model" , KNN()) ])
+
+pipe.get_params() #to get parameters valuee for the perofrmance analsis
+
+model = GridSearchCV( estimator = pipe, param_grid = {"desired params"= [ values of params]}, cv = 3) #for splitting dataset 3 times
+
+model.fit(X,y) pd.Dataframe(model.cv_results_) #to get results
